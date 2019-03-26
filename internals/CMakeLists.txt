@@ -1,0 +1,2 @@
+add_conventional_executable_test(dumpster_test)
+target_link_libraries(dumpster_test PRIVATE dumpster_v1 testing_v1)

@@ -1,0 +1,2 @@
+add_conventional_library(dumpster_v1)
+target_link_libraries(dumpster_v1 INTERFACE polyfill_v1)
