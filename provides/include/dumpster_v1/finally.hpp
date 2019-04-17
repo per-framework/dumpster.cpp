@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dumpster_v1/finally_synopsis.hpp"
+#include "dumpster_v1/synopsis.hpp"
 
 #include <utility>
 
