@@ -8,7 +8,8 @@ auto insertion_sort_test = test([]() {
   int values[] = {3, 1, 4, 1, 5, 9, 2, -1};
 
   dumpster_v1::insertion_sort(
-      values, [](auto lhs, auto rhs) { return lhs < rhs; },
+      values,
+      [](auto lhs, auto rhs) { return lhs < rhs; },
       [](auto x) { return x == -1; });
 
   int sorted[] = {1, 1, 2, 3, 4, 5, 9, -1};

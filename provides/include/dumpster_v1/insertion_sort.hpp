@@ -5,7 +5,8 @@
 #include <cstddef>
 
 template <class RandomIt, class Less, class IsSentinel>
-void dumpster_v1::insertion_sort(RandomIt values, Less less,
+void dumpster_v1::insertion_sort(RandomIt values,
+                                 Less less,
                                  IsSentinel is_sentinel) {
   size_t i = 0;
   while (!is_sentinel(values[++i])) {
