@@ -10,7 +10,7 @@ auto finally_lambda_test = test([]() {
 
   {
     auto finalizer = dumpster_v1::finally([&]() { finalized = true; });
-    executed = true;
+    executed = !finalized;
   }
 
   verify(finalized);
@@ -25,7 +25,7 @@ auto finally_function_test = test([]() {
 
   {
     auto finalizer = dumpster_v1::finally(s_function);
-    executed = true;
+    executed = !s_finalized;
   }
 
   verify(s_finalized);
