@@ -16,18 +16,3 @@ auto finally_lambda_test = test([]() {
   verify(finalized);
   verify(executed);
 });
-
-static bool s_finalized = false;
-static void s_function() { s_finalized = true; }
-
-auto finally_function_test = test([]() {
-  bool executed = false;
-
-  {
-    auto finalizer = dumpster_v1::finally(s_function);
-    executed = !s_finalized;
-  }
-
-  verify(s_finalized);
-  verify(executed);
-});
