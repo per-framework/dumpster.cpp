@@ -1,13 +1,25 @@
 #pragma once
 
-#include "polyfill_v1/type_traits.hpp"
+#include "dumpster_v1/private.hpp"
 
 namespace dumpster_v1 {
 
 // finally.hpp =================================================================
 
 /// Finalizer that invokes stored action when destroyed.
-template <class Action> struct finally_t;
+template <class Action> struct finally_t : Private::finally_t<Action> {
+  /// Calls the finalizing action given to the constructor.
+  ~finally_t();
+
+  /// Constructs a finalizer from the given finalizing action.
+  template <class ForwardableAction> finally_t(ForwardableAction &&action);
+
+  /// Finalizers are not CopyConstructible.
+  finally_t(const finally_t &) = delete;
+
+  /// Finalizers are not CopyAssignable.
+  finally_t &operator=(const finally_t &) = delete;
+};
 
 /// Creates a finalizer that invokes the action when destroyed.
 template <class Action>

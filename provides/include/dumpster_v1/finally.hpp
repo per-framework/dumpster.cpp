@@ -4,19 +4,21 @@
 
 #include <utility>
 
-template <class Action> struct dumpster_v1::finally_t {
-  ~finally_t() { m_action(); }
+template <class Action> dumpster_v1::Private::finally_t<Action>::~finally_t() {
+  m_action();
+}
 
-  template <class ForwardableAction>
-  finally_t(ForwardableAction &&action)
-      : m_action(std::forward<ForwardableAction>(action)) {}
+template <class Action>
+template <class ForwardableAction>
+dumpster_v1::Private::finally_t<Action>::finally_t(ForwardableAction &&action)
+    : m_action(std::forward<ForwardableAction>(action)) {}
 
-  finally_t(const finally_t &) = delete;
-  finally_t operator=(const finally_t &) = delete;
+template <class Action> dumpster_v1::finally_t<Action>::~finally_t() {}
 
-private:
-  std::conditional_t<std::is_function_v<Action>, Action *, Action> m_action;
-};
+template <class Action>
+template <class ForwardableAction>
+dumpster_v1::finally_t<Action>::finally_t(ForwardableAction &&action)
+    : Private::finally_t<Action>(std::forward<ForwardableAction>(action)) {}
 
 template <class Action>
 dumpster_v1::finally_t<std::remove_cvref_t<Action>>
