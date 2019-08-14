@@ -4,6 +4,34 @@
 
 namespace dumpster_v1 {
 
+// defaulted.hpp ===============================================================
+
+// Default initializes a value with the given arguments.
+template <class Value, auto... defaults> struct defaulted {
+  /// Default constructor initializes value with the defaults given as template
+  /// arguments.
+  defaulted();
+
+  /// Non-default constructor initializes value with given arguments.
+  template <class... Arguments> defaulted(Arguments &&... arguments);
+
+  /// Implicit conversion to const reference for convenience.
+  operator const Value &() const;
+
+  /// Implicit conversion to reference for convenience.
+  operator Value &();
+
+  /// The value is directly accessible as there is no reason to hide it.
+  Value value;
+};
+
+// Zero initializes a value of the given type.
+template <class Value>
+using zeroed =
+    defaulted<Value,
+              std::conditional_t<std::is_pointer_v<Value>, std::nullptr_t, int>(
+                  0)>;
+
 // finally.hpp =================================================================
 
 /// Finalizer that invokes stored action when destroyed.
