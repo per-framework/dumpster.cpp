@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include "dumpster_v1/private.hpp"
 
 namespace dumpster_v1 {
@@ -52,6 +54,11 @@ template <class Action> struct finally_t : Private::finally_t<Action> {
 /// Creates a finalizer that invokes the action when destroyed.
 template <class Action>
 finally_t<std::remove_cvref_t<Action>> finally(Action &&action);
+
+// ranqd1.hpp ==================================================================
+
+/// The `ranqd1` generator from Numerical Recipes in C, 2nd Edition.
+uint32_t ranqd1(uint32_t seed);
 
 // insertion_sort.hpp ==========================================================
 
