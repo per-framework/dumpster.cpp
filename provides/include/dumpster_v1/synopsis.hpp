@@ -28,11 +28,7 @@ template <class Value, auto... defaults> struct defaulted {
 };
 
 // Zero initializes a value of the given type.
-template <class Value>
-using zeroed =
-    defaulted<Value,
-              std::conditional_t<std::is_pointer_v<Value>, std::nullptr_t, int>(
-                  0)>;
+template <class Value> using zeroed = defaulted<Value, static_cast<Value>(0)>;
 
 // finally.hpp =================================================================
 
