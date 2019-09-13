@@ -51,11 +51,6 @@ template <class Action> struct finally_t : Private::finally_t<Action> {
 template <class Action>
 finally_t<std::remove_cvref_t<Action>> finally(Action &&action);
 
-// ranqd1.hpp ==================================================================
-
-/// The `ranqd1` generator from Numerical Recipes in C, 2nd Edition.
-uint32_t ranqd1(uint32_t seed);
-
 // insertion_sort.hpp ==========================================================
 
 /// Sorts given sentinel terminated sequence to ascending order.  Intended for
@@ -63,5 +58,10 @@ uint32_t ranqd1(uint32_t seed);
 /// small code size are desired.
 template <class RandomIt, class Less, class IsSentinel>
 void insertion_sort(RandomIt values, Less less, IsSentinel is_sentinel);
+
+// ranqd1.hpp ==================================================================
+
+/// The `ranqd1` generator from Numerical Recipes in C, 2nd Edition.
+uint32_t ranqd1(uint32_t seed);
 
 } // namespace dumpster_v1
