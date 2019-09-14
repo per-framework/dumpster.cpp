@@ -2,6 +2,9 @@
 
 #include "testing_v1/test.hpp"
 
+#include <cstddef>
+#include <cstdint>
+
 using namespace testing_v1;
 
 #define VERIFY_IS_PRIME_OR_1 0
@@ -33,7 +36,23 @@ template <class T> static void test() {
   }
 }
 
+template <class T> static void test_overload() {
+  verify(127 ==
+         dumpster_v1::prime_less_than_next_pow_2_or_1(static_cast<T>(101)));
+}
+
 auto primes_test = test([]() {
   test<uint32_t>();
   test<uint64_t>();
+
+  test_overload<uint8_t>();
+  test_overload<uint16_t>();
+
+  test_overload<unsigned char>();
+  test_overload<unsigned short>();
+  test_overload<unsigned int>();
+  test_overload<unsigned long>();
+  test_overload<unsigned long long>();
+
+  test_overload<size_t>();
 });
