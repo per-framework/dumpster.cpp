@@ -1,0 +1,1 @@
+add_conventional_executable(primes)
