@@ -59,11 +59,6 @@ finally_t<std::remove_cvref_t<Action>> finally(Action &&action);
 template <class RandomIt, class Less, class IsSentinel>
 void insertion_sort(RandomIt values, Less less, IsSentinel is_sentinel);
 
-// ranqd1.hpp ==================================================================
-
-/// The `ranqd1` generator from Numerical Recipes in C, 2nd Edition.
-uint32_t ranqd1(uint32_t seed);
-
 // primes.hpp ==================================================================
 
 /// Returns the largest prime that is less than the given value rounded to the
@@ -73,5 +68,10 @@ uint32_t prime_less_than_next_pow_2_or_1(uint32_t x);
 /// Returns the largest prime that is less than the given value rounded
 /// to the next power of 2 or 1.
 uint64_t prime_less_than_next_pow_2_or_1(uint64_t x);
+
+// ranqd1.hpp ==================================================================
+
+/// The `ranqd1` generator from Numerical Recipes in C, 2nd Edition.
+uint32_t ranqd1(uint32_t seed);
 
 } // namespace dumpster_v1
