@@ -65,9 +65,16 @@ void insertion_sort(RandomIt values, Less less, IsSentinel is_sentinel);
 /// next power of 2 or 1.
 uint32_t prime_less_than_next_pow_2_or_1(uint32_t x);
 
-/// Returns the largest prime that is less than the given value rounded
-/// to the next power of 2 or 1.
+/// Returns the largest prime that is less than the given value rounded to the
+/// next power of 2 or 1.
 uint64_t prime_less_than_next_pow_2_or_1(uint64_t x);
+
+/// Returns the largest prime that is less than the given value rounded to the
+/// next power of 2 or 1.
+template <class UnsignedType,
+          class = std::enable_if_t<(std::is_unsigned_v<UnsignedType> &&
+                                    sizeof(UnsignedType) <= sizeof(uint64_t))>>
+UnsignedType prime_less_than_next_pow_2_or_1(UnsignedType x);
 
 // ranqd1.hpp ==================================================================
 
