@@ -21,3 +21,10 @@ template <class Value, auto... defaults>
 dumpster_v1::defaulted<Value, defaults...>::operator Value &() {
   return value;
 }
+
+template <class Value, auto... defaults>
+template <class Forwardable>
+Value &dumpster_v1::defaulted<Value, defaults...>::
+operator=(Forwardable &&rhs) {
+  return value = std::forward<Forwardable>(rhs);
+}
