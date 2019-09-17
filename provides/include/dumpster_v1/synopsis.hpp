@@ -33,23 +33,23 @@ template <class Value> using zeroed = defaulted<Value, static_cast<Value>(0)>;
 // finally.hpp =================================================================
 
 /// Finalizer that invokes stored action when destroyed.
-template <class Action> struct finally_t : Private::finally_t<Action> {
+template <class Action> struct finalizer : Private::finalizer<Action> {
   /// Calls the finalizing action given to the constructor.
-  ~finally_t();
+  ~finalizer();
 
   /// Constructs a finalizer from the given finalizing action.
-  template <class ForwardableAction> finally_t(ForwardableAction &&action);
+  template <class ForwardableAction> finalizer(ForwardableAction &&action);
 
   /// Finalizers are not CopyConstructible.
-  finally_t(const finally_t &) = delete;
+  finalizer(const finalizer &) = delete;
 
   /// Finalizers are not CopyAssignable.
-  finally_t &operator=(const finally_t &) = delete;
+  finalizer &operator=(const finalizer &) = delete;
 };
 
 /// Creates a finalizer that invokes the action when destroyed.
 template <class Action>
-finally_t<std::remove_cvref_t<Action>> finally(Action &&action);
+finalizer<std::remove_cvref_t<Action>> finally(Action &&action);
 
 // insertion_sort.hpp ==========================================================
 

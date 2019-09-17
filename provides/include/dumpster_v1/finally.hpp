@@ -4,24 +4,24 @@
 
 #include <utility>
 
-template <class Action> dumpster_v1::Private::finally_t<Action>::~finally_t() {
+template <class Action> dumpster_v1::Private::finalizer<Action>::~finalizer() {
   m_action();
 }
 
 template <class Action>
 template <class ForwardableAction>
-dumpster_v1::Private::finally_t<Action>::finally_t(ForwardableAction &&action)
+dumpster_v1::Private::finalizer<Action>::finalizer(ForwardableAction &&action)
     : m_action(std::forward<ForwardableAction>(action)) {}
 
-template <class Action> dumpster_v1::finally_t<Action>::~finally_t() {}
+template <class Action> dumpster_v1::finalizer<Action>::~finalizer() {}
 
 template <class Action>
 template <class ForwardableAction>
-dumpster_v1::finally_t<Action>::finally_t(ForwardableAction &&action)
-    : Private::finally_t<Action>(std::forward<ForwardableAction>(action)) {}
+dumpster_v1::finalizer<Action>::finalizer(ForwardableAction &&action)
+    : Private::finalizer<Action>(std::forward<ForwardableAction>(action)) {}
 
 template <class Action>
-dumpster_v1::finally_t<std::remove_cvref_t<Action>>
+dumpster_v1::finalizer<std::remove_cvref_t<Action>>
 dumpster_v1::finally(Action &&action) {
-  return finally_t<std::remove_cvref_t<Action>>(std::forward<Action>(action));
+  return finalizer<std::remove_cvref_t<Action>>(std::forward<Action>(action));
 }
