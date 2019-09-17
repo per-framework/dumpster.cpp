@@ -25,3 +25,10 @@ dumpster_v1::finalizer<std::remove_cvref_t<Action>>
 dumpster_v1::finally(Action &&action) {
   return finalizer<std::remove_cvref_t<Action>>(std::forward<Action>(action));
 }
+
+template <class Action>
+std::optional<dumpster_v1::finalizer<std::remove_cvref_t<Action>>>
+dumpster_v1::finally_with_reset(Action &&action) {
+  return std::optional<finalizer<std::remove_cvref_t<Action>>>(
+      std::forward<Action>(action));
+}

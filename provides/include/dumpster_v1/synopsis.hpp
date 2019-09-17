@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 
 #include "dumpster_v1/private.hpp"
 
@@ -50,6 +51,12 @@ template <class Action> struct finalizer : Private::finalizer<Action> {
 /// Creates a finalizer that invokes the action when destroyed.
 template <class Action>
 finalizer<std::remove_cvref_t<Action>> finally(Action &&action);
+
+/// Creates a finalizer wrapped inside an optional so that the finalizer can be
+/// invoked explicitly by calling the `reset()` method.
+template <class Action>
+std::optional<finalizer<std::remove_cvref_t<Action>>>
+finally_with_reset(Action &&action);
 
 // insertion_sort.hpp ==========================================================
 
