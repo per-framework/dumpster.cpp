@@ -9,7 +9,7 @@ namespace dumpster_v1 {
 
 // defaulted.hpp ===============================================================
 
-// Default initializes a value with the given arguments.
+/// Default initializes a value with the given arguments.
 template <class Value, auto... defaults> struct defaulted {
   /// Default constructor initializes value with the defaults given as template
   /// arguments.
@@ -28,7 +28,7 @@ template <class Value, auto... defaults> struct defaulted {
   Value value;
 };
 
-// Zero initializes a value of the given type.
+/// Zero initializes a value of the given type.
 template <class Value> using zeroed = defaulted<Value, static_cast<Value>(0)>;
 
 // finally.hpp =================================================================
