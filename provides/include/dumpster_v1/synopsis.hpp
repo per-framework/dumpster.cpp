@@ -24,6 +24,9 @@ template <class Value, auto... defaults> struct defaulted {
   /// Implicit conversion to reference for convenience.
   operator Value &();
 
+  /// Assigns given `rhs` to `value` member.
+  template <class Forwardable> Value &operator=(Forwardable &&rhs);
+
   /// The value is directly accessible as there is no reason to hide it.
   Value value;
 };

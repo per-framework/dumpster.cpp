@@ -23,4 +23,12 @@ auto defaulted_test = test([]() {
     dumpster_v1::zeroed<char *> x;
     verify(x == nullptr);
   }
+  {
+    dumpster_v1::zeroed<uint8_t> x;
+    dumpster_v1::zeroed<uint8_t> y = x;
+    y += 1;
+    x = y;
+    x = 2 * y + 1;
+    verify(3 == x);
+  }
 });
