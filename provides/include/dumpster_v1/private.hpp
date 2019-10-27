@@ -21,5 +21,5 @@ template <class Action> class dumpster_v1::Private::finalizer {
 
   template <class ForwardableAction> finalizer(ForwardableAction &&action);
 
-  std::conditional_t<std::is_function_v<Action>, Action *, Action> m_action;
+  Action m_action;
 };
