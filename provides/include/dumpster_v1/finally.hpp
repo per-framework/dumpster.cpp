@@ -4,7 +4,8 @@
 
 #include <utility>
 
-template <class Action> dumpster_v1::Private::finalizer<Action>::~finalizer() {
+template <class Action>
+dumpster_v1::Private::finalizer<Action>::~finalizer<Action>() {
   m_action();
 }
 
@@ -13,7 +14,7 @@ template <class ForwardableAction>
 dumpster_v1::Private::finalizer<Action>::finalizer(ForwardableAction &&action)
     : m_action(std::forward<ForwardableAction>(action)) {}
 
-template <class Action> dumpster_v1::finalizer<Action>::~finalizer() {}
+template <class Action> dumpster_v1::finalizer<Action>::~finalizer<Action>() {}
 
 template <class Action>
 template <class ForwardableAction>
